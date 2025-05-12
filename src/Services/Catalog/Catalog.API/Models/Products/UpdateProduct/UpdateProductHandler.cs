@@ -40,7 +40,7 @@ internal class UpdateProductCommandHandler(IDocumentSession session, ILogger<Upd
         var existingProduct = await session.LoadAsync<Product>(command.Id);
         if (existingProduct is null)
         {
-            throw new ProductNotFoundException();
+            throw new ProductNotFoundException(command.Id);
         }
         
         existingProduct = command.Adapt<Product>();
