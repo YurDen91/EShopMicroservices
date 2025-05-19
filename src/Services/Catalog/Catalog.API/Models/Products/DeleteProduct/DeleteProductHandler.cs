@@ -1,3 +1,5 @@
+using Catalog.API.Exceptions;
+
 namespace Catalog.API.Models.Products.DeleteProduct;
 
 public record DeleteProductCommand(Guid Id) : ICommand<DeleteProductResult>;
@@ -13,21 +15,16 @@ public class DeleteProductCommandValidator : AbstractValidator<DeleteProductComm
     }
 }
 
-public class DeleteProductHandler(
-    IDocumentSession session,
-    ILogger<DeleteProductHandler> logger)
+public class DeleteProductHandler(IDocumentSession session)
     : ICommandHandler<DeleteProductCommand, DeleteProductResult>
 {
     public async Task<DeleteProductResult> Handle(DeleteProductCommand command, CancellationToken cancellationToken)
     {
-        logger.LogInformation("Deleting product {Id}", command.Id);
-        
         // Check if the product exists
         var existingProduct = await session.LoadAsync<Product>(command.Id);
         if (existingProduct is null)
         {
-            logger.LogWarning("Product {Id} not found", command.Id);
-            return new DeleteProductResult(false);
+            throw new ProductNotFoundException(command.Id);
         }
         
         session.Delete<Product>(command.Id);

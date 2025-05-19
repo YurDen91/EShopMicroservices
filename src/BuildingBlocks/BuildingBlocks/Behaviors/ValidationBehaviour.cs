@@ -36,7 +36,7 @@ public class ValidationBehaviour<TRequest, TResponse>
         
         // If there are any validation failures, throw a ValidationException.
         if (failures.Any())
-            throw new ValidationException(string.Join(Environment.NewLine, failures));
+            throw new ValidationException(failures);
         
         return await next();
     }
