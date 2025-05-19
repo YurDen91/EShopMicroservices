@@ -47,18 +47,9 @@ TestResults/
 .localhistory/
 local.settings.json
 
-# Файлы Docker
-*.env
-docker-compose.override.yml
-
 # Сертификаты и ключи
 *.pfx
 *.snk
-
-# Файлы CI/CD
-*.yml
-*.yaml
-*.override.yml
 
 # Автоматически генерируемые файлы
 **/Generated_Code/
