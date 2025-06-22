@@ -19,7 +19,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Services\" />
+      <None Remove="Protos\dicsount.proto" />
+      <Protobuf Include="Protos\dicsount.proto" GrpcServices="Server" />
     </ItemGroup>
 
 </Project>
