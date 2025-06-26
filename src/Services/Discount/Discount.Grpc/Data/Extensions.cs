@@ -8,7 +8,9 @@ public static class Extensions
     {
         using var scope = app.ApplicationServices.CreateScope();
         using var dbContext = scope.ServiceProvider.GetRequiredService<DiscountContext>();
-        dbContext.Database.MigrateAsync();
+        // for some reason, it didn't wait for migration -> DB issues as a resulr
+        // used sync call as a work around
+        dbContext.Database.Migrate();
 
         return app;
     }
