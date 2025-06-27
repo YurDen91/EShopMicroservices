@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "Basket & Discount",
+    "Projects": [
+      {
+        "Path": "Services\\Basket\\Basket.API\\Basket.API.csproj",
+        "Action": "Start",
+        "DebugTarget": "https"
+      },
+      {
+        "Path": "Services\\Discount\\Discount.Grpc\\Discount.Grpc.csproj",
+        "Action": "Start",
+        "DebugTarget": "https"
+      }
+    ]
+  }
+]
